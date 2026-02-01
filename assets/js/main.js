@@ -206,6 +206,30 @@
       });
   }
 
+  function initRecentPosts(){
+    var target = document.getElementById('recentList');
+    if(!target) return;
+    fetch('assets/data/posts.json')
+      .then(function(res){ return res.json(); })
+      .then(function(posts){
+        if(!Array.isArray(posts) || posts.length === 0) return;
+        posts.sort(function(a, b){
+          var dateA = Date.parse(a.date || 0) || 0;
+          var dateB = Date.parse(b.date || 0) || 0;
+          return dateB - dateA;
+        });
+        var recent = posts.slice(0, 3);
+        var html = '';
+        recent.forEach(function(item){
+          html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
+        });
+        target.innerHTML = html;
+      })
+      .catch(function(){
+        // Keep existing if fetch fails
+      });
+  }
+
   function initMusicPlayer(isPersisted){
     var toggle = document.getElementById('musicToggle');
     var nextBtn = document.getElementById('musicNext');
@@ -402,6 +426,7 @@
     initNavDropdowns();
     initTutorialSwitcher();
     initMostViewed();
+    initRecentPosts();
     initMusicPlayer(isPersisted);
     initThemeToggle();
   });

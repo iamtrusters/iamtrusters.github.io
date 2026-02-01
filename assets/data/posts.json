@@ -1,44 +1,66 @@
 [
   {
+    "title": "Smart Pointers in C++: unique_ptr, shared_ptr, and weak_ptr",
+    "url": "posts/2026-02-02-smart-pointers-cpp.html",
+    "date": "2026-02-02",
+    "views": 0,
+    "excerpt": "Mastering modern C++ memory management: exclusive ownership, shared resources, and breaking reference cycles with practical examples.",
+    "category": "C++"
+  },
+  {
     "title": "Introduction to RTOS",
     "url": "posts/2026-02-01-introduction-to-rtos.html",
     "date": "2026-02-01",
-    "views": 1240
+    "views": 1240,
+    "excerpt": "A practical overview of Real-Time Operating Systems, scheduling, synchronization, and best practices for embedded development.",
+    "category": "Embedded"
   },
   {
     "title": "Embedded Logging Strategies",
     "url": "posts/2026-01-20-embedded-logging-strategies.html",
     "date": "2026-01-20",
-    "views": 980
+    "views": 980,
+    "excerpt": "Practical patterns for low-overhead logging on microcontrollers without breaking real-time behavior.",
+    "category": "Embedded"
   },
   {
     "title": "Bare-Metal Startup Basics",
     "url": "posts/2026-01-15-bare-metal-startup.html",
     "date": "2026-01-15",
-    "views": 1100
+    "views": 1100,
+    "excerpt": "What happens before main(): reset vectors, memory init, clocks, and C++ constructors.",
+    "category": "Embedded"
   },
   {
     "title": "Practical Driver Abstractions",
     "url": "posts/2026-01-05-driver-abstractions.html",
     "date": "2026-01-05",
-    "views": 760
+    "views": 760,
+    "excerpt": "Building maintainable hardware interfaces with abstraction layers and dependency injection.",
+    "category": "Embedded"
   },
   {
     "title": "Modern C++ Best Practices",
     "url": "posts/2025-12-03-modern-cpp-best-practices.html",
     "date": "2025-12-03",
-    "views": 1330
+    "views": 1330,
+    "excerpt": "Writing clean, efficient C++ code with modern language features and idioms.",
+    "category": "C++"
   },
   {
     "title": "RAII & Smart Pointers",
     "url": "posts/2025-12-04-raii-and-smart-pointers.html",
     "date": "2025-12-04",
-    "views": 1330
+    "views": 1330,
+    "excerpt": "Resource management in C++: RAII patterns and smart pointer usage.",
+    "category": "C++"
   },
   {
     "title": "Low-latency C++ Tips",
     "url": "posts/2025-12-04-low-latency-cpp.html",
     "date": "2025-12-04",
-    "views": 1450
+    "views": 1450,
+    "excerpt": "Techniques for writing high-performance, low-latency C++ applications.",
+    "category": "C++"
   }
 ]
