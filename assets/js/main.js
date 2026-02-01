@@ -149,12 +149,196 @@
       });
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
+  function initMusicPlayer(isPersisted){
+    var toggle = document.getElementById('musicToggle');
+    var nextBtn = document.getElementById('musicNext');
+    var typeDisplay = document.getElementById('musicType');
+    var audio = document.getElementById('backgroundMusic');
+    if(!toggle || !nextBtn || !typeDisplay || !audio) return;
+
+    var musicTypes = [
+      {
+        name: 'Lofi',
+        sources: [
+          'https://lofi.stream.laut.fm/lofi',
+          'https://usa9.fastcast4u.com/proxy/jamz?mp=/1',
+          'https://streams.radiomast.io/lofi-hip-hop',
+          'https://www.lofi.cafe/lofi.mp3',
+          'https://streams.ilovemusic.de/lofi.mp3',
+          'https://radio.streemlion.com:1780/stream'
+        ]
+      },
+      {
+        name: 'Classical',
+        sources: [
+          'https://streaming.radionomy.com/classical',
+          'https://live-radio01.mediahubaustralia.com/2TJW/mp3/',
+          'https://streaming.radionomy.com/classicalradio',
+          'https://live.leanstream.co/CLASSICALUK',
+          'https://radio.streemlion.com:2690/stream',
+          'https://classical.stream.laut.fm/classical'
+        ]
+      },
+      {
+        name: 'Jazz',
+        sources: [
+          'https://streaming.radionomy.com/jazzradio',
+          'https://jazz.stream.laut.fm/jazz',
+          'https://live.leanstream.co/JAZZUK',
+          'https://streaming.radionomy.com/smoothjazz',
+          'https://jazzradio.com/stream',
+          'https://smoothjazz.stream.laut.fm/smoothjazz'
+        ]
+      },
+      {
+        name: 'Ambient',
+        sources: [
+          'https://streaming.radionomy.com/ambient',
+          'https://ambient.stream.laut.fm/ambient',
+          'https://live.leanstream.co/AMBIENTUK',
+          'https://streaming.radionomy.com/ambientradio',
+          'https://ambientmusicmix.com/stream',
+          'https://chillout.stream.laut.fm/chillout'
+        ]
+      }
+    ];
+
+    var currentTypeIndex = parseInt(localStorage.getItem('musicTypeIndex')) || 0;
+    var currentSourceIndex = -1;
+    var wasPlaying = localStorage.getItem('musicPlaying') === 'true';
+
+    function saveState(){
+      localStorage.setItem('musicTypeIndex', currentTypeIndex);
+      localStorage.setItem('musicPlaying', !audio.paused);
+    }
+
+    function setType(index){
+      currentTypeIndex = index % musicTypes.length;
+      currentSourceIndex = 0;
+      typeDisplay.textContent = musicTypes[currentTypeIndex].name;
+      setRandomSource();
+      saveState();
+    }
+
+    function setRandomSource(){
+      var type = musicTypes[currentTypeIndex];
+      console.log('Setting source:', type.sources[currentSourceIndex]);
+      audio.src = type.sources[currentSourceIndex];
+      currentSourceIndex = (currentSourceIndex + 1) % type.sources.length;
+      audio.load();
+    }
+
+    function updateIcon(){
+      toggle.textContent = audio.paused ? '♪' : '⏸️';
+    }
+
+    function playWithFallback(tryCount = 0){
+      if (tryCount > 5) {
+        console.log('Max tries reached, stopping fallback');
+        return;
+      }
+      console.log('Trying to play source, attempt:', tryCount + 1);
+      var timeout = setTimeout(function(){
+        console.log('Timeout, trying next source');
+        // If not playing after 2s, try another source
+        setRandomSource();
+        playWithFallback(tryCount + 1);
+      }, 2000);
+
+      audio.addEventListener('playing', function onPlaying(){
+        console.log('Playing started');
+        clearTimeout(timeout);
+        audio.removeEventListener('playing', onPlaying);
+      }, { once: true });
+
+      audio.play().catch(function(){
+        console.log('Play failed (autoplay blocked or error)');
+        clearTimeout(timeout);
+        // Autoplay blocked or error
+      });
+    }
+
+    if (!isPersisted) {
+      // Full init for new page load
+      setType(currentTypeIndex);
+      updateIcon();
+
+      // If it was playing before, start playing
+      if(wasPlaying){
+        playWithFallback();
+      }
+    } else {
+      // For persisted page (back/forward), just restore UI and resume if needed
+      typeDisplay.textContent = musicTypes[currentTypeIndex].name;
+      updateIcon();
+      if (wasPlaying && audio.paused) {
+        playWithFallback();
+      }
+    }
+
+    toggle.addEventListener('click', function(){
+      if(audio.paused){
+        setRandomSource();
+        playWithFallback();
+      } else {
+        audio.pause();
+      }
+      updateIcon();
+      saveState();
+    });
+
+    nextBtn.addEventListener('click', function(){
+      var wasPlaying = !audio.paused;
+      setType(currentTypeIndex + 1);
+      if(wasPlaying){
+        playWithFallback();
+      }
+    });
+
+    // Update icon and save state on audio events
+    audio.addEventListener('play', function(){
+      updateIcon();
+      saveState();
+    });
+    audio.addEventListener('pause', function(){
+      updateIcon();
+      saveState();
+    });
+    audio.addEventListener('ended', function(){
+      updateIcon();
+      saveState();
+    });
+
+    // Change source on error
+    audio.addEventListener('error', function(){
+      console.log('Audio error, trying next source');
+      setRandomSource();
+      if(!audio.paused){
+        playWithFallback();
+      }
+    });
+
+    // Volume control
+    var volumeSlider = document.getElementById('volumeSlider');
+    if(volumeSlider){
+      var savedVolume = localStorage.getItem('musicVolume') || 0.5;
+      audio.volume = savedVolume;
+      volumeSlider.value = savedVolume;
+      volumeSlider.addEventListener('input', function(){
+        audio.volume = this.value;
+        localStorage.setItem('musicVolume', this.value);
+      });
+    }
+  }
+
+  window.addEventListener('pageshow', function(event){
+    var isPersisted = event.persisted;
     initContactForms();
     initSmoothLinks();
     initNavDropdowns();
     initTutorialSwitcher();
     initMostViewed();
+    initMusicPlayer(isPersisted);
   });
 
   // Expose for debugging if needed

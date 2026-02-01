@@ -19,6 +19,9 @@
           <a href="about.html">About</a>
           <a href="portfolio.html">Portfolio</a>
           <a href="contact.html">Contact</a>
+          <button class="music-toggle" id="musicToggle" title="Toggle Music">♪</button>
+          <button id="musicNext" title="Next music type">⏭️</button>
+          <span id="musicType">Lofi</span>
         </nav>
         </div>
     </header>
@@ -129,6 +132,9 @@ xTaskCreate(vTaskFunction, "Worker", 256, NULL, tskIDLE_PRIORITY + 1, NULL);
   </main>
 
   <footer class="site-footer"><div class="wrap foot">&copy; 2026 Caltrixia</div></footer>
+
+  <audio id="backgroundMusic" src="" preload="none" loop></audio>
+
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-c.min.js"></script>

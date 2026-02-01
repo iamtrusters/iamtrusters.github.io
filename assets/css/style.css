@@ -484,3 +484,114 @@ pre code{
         padding:0 14px;
     }
 }
+
+/* ================= Music Player ================= */
+
+.music-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.music-toggle:hover {
+    background: var(--bg);
+    color: var(--accent);
+}
+
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 200px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.music-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.music-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-retry {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .music-player {
+        width: 250px;
+        height: 150px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* Volume slider */
+#volumeSlider {
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+}
+
+#volumeSlider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+}
