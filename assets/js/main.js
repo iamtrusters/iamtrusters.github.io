@@ -36,6 +36,27 @@
         }
       });
     });
+
+    // Smooth page transitions for navigation links
+    document.querySelectorAll('a[href]').forEach(function(a){
+      // Skip anchor links, external links, and links with target="_blank"
+      if(a.getAttribute('href').startsWith('#') ||
+         a.getAttribute('href').startsWith('http') ||
+         a.getAttribute('target') === '_blank') return;
+
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var href = a.getAttribute('href');
+
+        // Fade out
+        document.body.style.opacity = '0';
+
+        // Navigate after fade
+        setTimeout(function(){
+          window.location.href = href;
+        }, 200);
+      });
+    });
   }
 
   function initNavDropdowns(){
@@ -56,6 +77,42 @@
         var btn = dd.querySelector('.drop-toggle');
         if(btn) btn.setAttribute('aria-expanded','false');
       });
+    });
+  }
+
+  function initThemeToggle(){
+    var nav = document.querySelector('.main-nav');
+    if(!nav) return;
+
+    // Remove any existing theme toggle buttons to prevent duplicates
+    var existingBtns = nav.querySelectorAll('#themeToggle');
+    existingBtns.forEach(function(btn){
+      btn.remove();
+    });
+
+    // Add theme toggle button
+    var themeBtn = document.createElement('button');
+    themeBtn.id = 'themeToggle';
+    themeBtn.title = 'Toggle Theme';
+    themeBtn.textContent = '🌙';
+    var musicToggle = nav.querySelector('.music-toggle') || nav.lastElementChild;
+    nav.insertBefore(themeBtn, musicToggle);
+
+    // Check saved theme and update button state
+    var savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark'){
+      document.documentElement.classList.add('dark');
+      themeBtn.textContent = '☀️';
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeBtn.textContent = '🌙';
+    }
+
+    // Toggle theme
+    themeBtn.addEventListener('click', function(){
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
     });
   }
 
@@ -333,12 +390,20 @@
 
   window.addEventListener('pageshow', function(event){
     var isPersisted = event.persisted;
+
+    // Fade in on page load
+    document.body.style.opacity = '0';
+    setTimeout(function(){
+      document.body.style.opacity = '1';
+    }, 50);
+
     initContactForms();
     initSmoothLinks();
     initNavDropdowns();
     initTutorialSwitcher();
     initMostViewed();
     initMusicPlayer(isPersisted);
+    initThemeToggle();
   });
 
   // Expose for debugging if needed

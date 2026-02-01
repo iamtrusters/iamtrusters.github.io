@@ -3,6 +3,9 @@
     --card:#ffffff;
     --muted:#6b7280;
     --accent:#0b5fff;
+    --text:#0f172a;
+    --code-bg: rgba(15,23,42,0.04);
+    --bg-image: linear-gradient(45deg, #f5f5dc 0%, #ede8d0 25%, #f5f5dc 50%, #ede8d0 75%, #f5f5dc 100%);
 
     --max-width:1100px;
     --radius:10px;
@@ -10,6 +13,20 @@
     --border:#eef2f7;
     --shadow-sm:0 4px 12px rgba(12,14,23,0.04);
     --shadow-md:0 6px 18px rgba(12,14,23,0.06);
+}
+
+html.dark {
+    --bg:#121212;
+    --card:#1e1e1e;
+    --muted:#cccccc;
+    --accent:#4a9eff;
+    --text:#f0f0f0;
+    --code-bg: rgba(255,255,255,0.1);
+    --bg-image: linear-gradient(135deg, #2c1810 0%, #1a0f0a 25%, #2c1810 50%, #1a0f0a 75%, #2c1810 100%);
+
+    --border:#333333;
+    --shadow-sm:0 4px 12px rgba(0,0,0,0.3);
+    --shadow-md:0 6px 18px rgba(0,0,0,0.5);
 }
 
 html{
@@ -24,9 +41,12 @@ html{
 body{
     margin:0;
     font-family:'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:var(--bg);
-    color:#0f172a;
+    background: var(--bg) var(--bg-image);
+    color:var(--text);
     -webkit-font-smoothing:antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .wrap{
@@ -38,12 +58,13 @@ body{
 /* ================= Header ================= */
 
 .site-header{
-    background:#fff;
-    border-bottom:1px solid #e6e9ef;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 /* Fixed header */
-.site-header{position:fixed !important;top:0 !important;left:0;right:0;z-index:2147483646 !important;background:rgba(255,255,255,0.995);box-shadow:0 6px 18px rgba(12,14,23,0.06);opacity:1 !important;visibility:visible !important;transition:none !important}
+.site-header{position:fixed !important;top:0 !important;left:0;right:0;z-index:2147483646 !important;background:var(--card);box-shadow:var(--shadow-md);opacity:1 !important;visibility:visible !important;transition:none !important}
 .site-header *{transition:none !important}
 
 /* Debug overlay removed. */
@@ -92,30 +113,40 @@ body{padding-top:92px}
 .drop-toggle{background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;font-weight:600}
 .dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-md);border-radius:8px;min-width:160px;display:none;flex-direction:column;overflow:hidden}
 .dropdown-menu a{display:block;padding:10px 14px;color:var(--accent);text-decoration:none;font-weight:500}
-.dropdown-menu a:hover{background:#f6f7fb;color:var(--accent)}
+.dropdown-menu a:hover{background:var(--bg);color:var(--accent)}
 .nav-dropdown:hover .dropdown-menu,.nav-dropdown.open .dropdown-menu{display:flex}
 
 .main-nav a{
-    color:#0f172a;
+    color:var(--text);
     text-decoration:none;
     font-weight:600;
+    transition: color 0.3s ease;
 }
 
 .main-nav a:hover{
     color:var(--accent);
 }
 
+.main-nav button {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
 /* ================= Hero ================= */
 
 .hero{
     padding:48px 0;
-    background:linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+    background: var(--card);
 }
 
 .hero h1{
     margin:0 0 12px;
     font-size:2.1rem;
-    color:#0b1220;
+    color:var(--text);
 }
 
 .hero .lead{
@@ -295,9 +326,9 @@ body{padding-top:92px}
 
 .contact-form input,
 .contact-form textarea{
-    background:#fff;
+    background:var(--card);
     padding:10px;
-    border:1px solid #e6eef7;
+    border:1px solid var(--border);
     border-radius:8px;
     font-family:inherit;
 }
@@ -374,11 +405,12 @@ pre{
     font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
     font-size:0.92rem;
     margin:1rem 0;
-    border:1px solid #e6e9ef;
+    border:1px solid var(--border);
+    background: var(--card);
 }
 
 code{
-    background:rgba(15,23,42,0.04);
+    background:var(--code-bg);
     padding:2px 6px;
     border-radius:6px;
     font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
@@ -417,7 +449,7 @@ pre code{
 .content.single h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #0f172a;
+    color: var(--text);
 }
 
 .content.single h2 {
