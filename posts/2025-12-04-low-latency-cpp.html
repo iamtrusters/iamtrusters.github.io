@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Low-latency C++ Tips — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>Low-latency C++ Tips</h1>
+      <p class="meta">Dec 4, 2025 · C++</p>
+
+      <h2>Prefer contiguous containers</h2>
+      <p>Use `std::vector` to benefit from cache locality. Avoid linked lists for hot paths.</p>
+
+      <h2>Avoid dynamic allocations in hot loops</h2>
+      <p>Pre-allocate memory or use object pools to eliminate unpredictable allocations.</p>
+
+      <h2>Measure, don't guess</h2>
+      <p>Microbenchmark with realistic inputs; profile end-to-end to find true bottlenecks.</p>
+
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2025 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

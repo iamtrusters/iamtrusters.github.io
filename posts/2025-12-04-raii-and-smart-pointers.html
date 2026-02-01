@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RAII & Smart Pointers — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>RAII & Smart Pointers</h1>
+      <p class="meta">Dec 4, 2025 · C++</p>
+
+      <p>RAII (Resource Acquisition Is Initialization) is a core C++ pattern for deterministic resource management. Wrap resources in types whose destructors release them.</p>
+
+      <h2>unique_ptr</h2>
+      <p>Use `std::unique_ptr` for exclusive ownership. It is lightweight and clearly expresses intent.</p>
+
+      <pre><code class="language-cpp">std::unique_ptr<MyType> ptr = std::make_unique<MyType>(args);</code></pre>
+
+      <h2>shared_ptr</h2>
+      <p>Use `std::shared_ptr` only when shared ownership is necessary. Prefer `weak_ptr` to break cycles.</p>
+
+      <h2>Custom RAII types</h2>
+      <p>For resources other than memory (file descriptors, locks), create small RAII wrappers that implement move-only semantics where appropriate.</p>
+
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2025 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

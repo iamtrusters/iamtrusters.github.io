@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bare-Metal Startup Basics — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>Bare-Metal Startup Basics</h1>
+      <p class="meta">Jan 15, 2026 · Embedded</p>
+
+      <p>Before <code>main()</code> runs, the MCU needs a clean runtime environment. Here’s what happens in a typical bare-metal startup sequence.</p>
+
+      <h2>Reset vector and stack</h2>
+      <p>The reset handler sets the stack pointer and jumps to the startup routine.</p>
+
+      <h2>Copy .data, zero .bss</h2>
+      <p>Initialized globals are copied from flash to RAM; uninitialized globals are zeroed.</p>
+
+      <h2>Clock and peripheral init</h2>
+      <p>System clocks, PLLs, and basic peripherals are configured before drivers run.</p>
+
+      <h2>Run constructors (C++)</h2>
+      <p>Static constructors are invoked before <code>main()</code> for C++ programs.</p>
+
+      <p>Understanding startup makes debugging early-boot issues much easier.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2026 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

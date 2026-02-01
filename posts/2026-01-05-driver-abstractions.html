@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Practical Driver Abstractions — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>Practical Driver Abstractions</h1>
+      <p class="meta">Jan 5, 2026 · Embedded</p>
+
+      <p>Good driver abstractions keep hardware details localized while staying efficient. Aim for simple interfaces that are easy to test and reuse.</p>
+
+      <h2>Separate HAL from device logic</h2>
+      <p>Keep low-level register access in a thin HAL layer and build device-specific logic on top.</p>
+
+      <h2>Use dependency injection</h2>
+      <p>Pass interfaces for I/O and timing to make drivers testable without hardware.</p>
+
+      <h2>Minimize dynamic allocation</h2>
+      <p>Prefer static buffers and fixed-size queues for deterministic behavior.</p>
+
+      <p>Small, explicit APIs outperform complex abstractions in embedded systems.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2026 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

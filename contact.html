@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>About — iamtrusters</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <meta name="description" content="About iamtrusters — C++ engineering notes and best practices">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">
+        <a href="index.html"><span class="logo">Caltrixia</span></a>
+        <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+      </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+  </header>
+
+  <main class="wrap contact-page">
+    <article class="card contact-card">
+      <h1>Contact</h1>
+      <p>If you'd like to reach out for consulting, collaboration, or to suggest a topic, email <a href="mailto:longkute169@gmail.com">longkute169@gmail.com</a>.</p>
+
+      <h2>Send a message</h2>
+      <p>Use the form below to send a message — submissions will be forwarded to <strong>longkute169@gmail.com</strong>.</p>
+
+      <form id="contactForm" class="contact-form" aria-label="Contact form" action="https://formsubmit.co/longkute169@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from iamtrusters site">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="/contact-thanks.html">
+
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="_replyto" type="email" required>
+
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" type="text" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit" class="cta">Send message</button>
+      </form>
+
+      <p class="muted">I don't collect personal data on this site. Email addresses are used only for direct contact and will not be shared.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap foot">
+      <p>&copy; 2025 iamtrusters</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

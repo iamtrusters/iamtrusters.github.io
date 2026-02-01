@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Modern C++ Best Practices — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>Modern C++ Best Practices</h1>
+      <p class="meta">Dec 3, 2025 · C++</p>
+
+      <p>Modern C++ emphasizes safety, clarity, and performance. Use RAII for resource management, prefer smart pointers over raw pointers, and write expressive interfaces.</p>
+
+      <h2>Prefer RAII and smart pointers</h2>
+      <p>Manage resources using objects with deterministic destructors. Use `std::unique_ptr` for sole ownership and `std::shared_ptr` when shared ownership is required. Avoid raw `new`/`delete` in most code paths.</p>
+
+      <h2>Value semantics</h2>
+      <p>Design types with clear value semantics. Implement move constructors/assignments where copying is expensive. Pass by value for small types, and by const reference for larger ones.</p>
+
+      <h2>Use the standard library</h2>
+      <p>The standard library offers robust containers and algorithms that are well-tested and optimized. Use `std::vector`, `std::array`, and `std::algorithm` instead of hand-rolled equivalents.</p>
+
+      <h2>Prefer algorithms over loops</h2>
+      <p>Use concise, expressive algorithms which make intent clear and enable compiler optimizations.</p>
+
+      <p>Follow the principle of least surprise — write code that is easy to read, reason about, and maintain.</p>
+
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2025 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

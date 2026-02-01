@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Embedded Logging Strategies — iamtrusters</title>
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+        <div class="brand">
+            <a href="index.html"><span class="logo">Caltrixia</span></a>
+            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+  <main class="wrap content single">
+    <article class="card">
+      <h1>Embedded Logging Strategies</h1>
+      <p class="meta">Jan 20, 2026 · Embedded</p>
+
+      <p>Logging on microcontrollers is a balance between insight and overhead. Here are practical patterns for useful logs without breaking real-time behavior.</p>
+
+      <h2>Use levels and compile-time filtering</h2>
+      <p>Define levels (error, warn, info, debug) and compile out debug logs in production builds.</p>
+
+      <h2>Prefer binary logging for hot paths</h2>
+      <p>For tight loops, store compact binary events into a ring buffer and decode them off-device.</p>
+
+      <h2>Timestamp with a monotonic counter</h2>
+      <p>Use a hardware timer or RTOS tick for consistent ordering across tasks and ISRs.</p>
+
+      <h2>Don’t log from ISRs</h2>
+      <p>Push minimal events to a queue and let a low-priority task format the output.</p>
+
+      <p>Start simple, keep logs lightweight, and measure CPU/latency impact early.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="wrap foot">&copy; 2026 iamtrusters</div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
