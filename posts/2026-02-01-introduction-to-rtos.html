@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Introduction to RTOS — iamtrusters</title>
   <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
         <div class="wrap">
         <div class="brand">
             <a href="index.html"><span class="logo">Caltrixia</span></a>
-            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+            <p class="tagline">Think deeper, Build better</p>
         </div>
         <nav class="main-nav">
           <a href="index.html">Home</a>
@@ -42,6 +43,32 @@
 
       <h2>Tasks, ISRs, and context</h2>
       <p>Tasks (threads) are the main concurrent units; ISRs handle hardware events and should be short. Avoid heavy logic in ISRs — defer processing to tasks via queues or flags.</p>
+
+      <h2>Simple RTOS Architecture Diagram</h2>
+      <div class="diagram">
+        <svg width="400" height="150" viewBox="0 0 400 150">
+          <rect x="20" y="50" width="80" height="50" fill="#f0f8ff" stroke="#0b5fff" stroke-width="2" rx="5" />
+          <text x="60" y="75" text-anchor="middle" font-family="Inter" font-size="12">ISR</text>
+          <text x="60" y="90" text-anchor="middle" font-family="Inter" font-size="10">Short</text>
+
+          <rect x="160" y="50" width="80" height="50" fill="#f0f8ff" stroke="#0b5fff" stroke-width="2" rx="5" />
+          <text x="200" y="75" text-anchor="middle" font-family="Inter" font-size="12">Task</text>
+          <text x="200" y="90" text-anchor="middle" font-family="Inter" font-size="10">Work</text>
+
+          <rect x="300" y="50" width="80" height="50" fill="#f0f8ff" stroke="#0b5fff" stroke-width="2" rx="5" />
+          <text x="340" y="75" text-anchor="middle" font-family="Inter" font-size="12">Hardware</text>
+          <text x="340" y="90" text-anchor="middle" font-family="Inter" font-size="10">Event</text>
+
+          <path d="M 100 75 L 160 75" stroke="#0b5fff" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 240 75 L 300 75" stroke="#0b5fff" stroke-width="2" marker-end="url(#arrow)" />
+
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#0b5fff" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
 
       <h2>Synchronization primitives</h2>
       <p>Common primitives provided by RTOSes:</p>
@@ -75,7 +102,7 @@
       </ul>
 
       <h2>Quick FreeRTOS example</h2>
-      <pre><code>// Create a task (FreeRTOS - C)
+      <pre><code class="language-c">// Create a task (FreeRTOS - C)
 void vTaskFunction(void *pvParameters) {
   for(;;) {
     // do work
@@ -102,6 +129,9 @@ xTaskCreate(vTaskFunction, "Worker", 256, NULL, tskIDLE_PRIORITY + 1, NULL);
   </main>
 
   <footer class="site-footer"><div class="wrap foot">&copy; 2026 iamtrusters</div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-c.min.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

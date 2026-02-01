@@ -96,11 +96,65 @@
     }
   }
 
+  function sortByViewsThenDate(a, b){
+    var viewsDiff = (b.views || 0) - (a.views || 0);
+    if(viewsDiff !== 0) return viewsDiff;
+    var dateA = Date.parse(a.date || 0) || 0;
+    var dateB = Date.parse(b.date || 0) || 0;
+    return dateB - dateA;
+  }
+
+  function renderMostViewed(list, target){
+    if(!list || list.length === 0) return;
+    var html = '';
+    list.forEach(function(item){
+      html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
+    });
+    target.innerHTML = html;
+  }
+
+  function getRecentFallback(){
+    var cards = document.querySelectorAll('.card.recent');
+    var recentCard = null;
+    cards.forEach(function(card){
+      var h3 = card.querySelector('h3');
+      if(h3 && h3.textContent.trim().toLowerCase() === 'recent'){
+        recentCard = card;
+      }
+    });
+    if(!recentCard) return [];
+    var links = recentCard.querySelectorAll('li a');
+    var list = [];
+    for(var i = 0; i < links.length && list.length < 3; i++){
+      list.push({ title: links[i].textContent, url: links[i].getAttribute('href') });
+    }
+    return list;
+  }
+
+  function initMostViewed(){
+    var target = document.getElementById('mostViewedList');
+    if(!target) return;
+    fetch('assets/data/posts.json')
+      .then(function(res){ return res.json(); })
+      .then(function(posts){
+        if(!Array.isArray(posts) || posts.length === 0){
+          renderMostViewed(getRecentFallback(), target);
+          return;
+        }
+        posts.sort(sortByViewsThenDate);
+        renderMostViewed(posts.slice(0, 3), target);
+      })
+      .catch(function(){
+        renderMostViewed(getRecentFallback(), target);
+      });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     initContactForms();
     initSmoothLinks();
     initNavDropdowns();
     initTutorialSwitcher();
+    initMostViewed();
   });
 
   // Expose for debugging if needed

@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>RAII & Smart Pointers — iamtrusters</title>
   <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
         <div class="wrap">
         <div class="brand">
             <a href="index.html"><span class="logo">Caltrixia</span></a>
-            <p class="tagline">Engineering notes, embedded systems, and practical tutorials</p>
+            <p class="tagline">Think deeper, Build better</p>
         </div>
         <nav class="main-nav">
           <a href="index.html">Home</a>
@@ -32,7 +33,7 @@
       <h2>unique_ptr</h2>
       <p>Use `std::unique_ptr` for exclusive ownership. It is lightweight and clearly expresses intent.</p>
 
-      <pre><code class="language-cpp">std::unique_ptr<MyType> ptr = std::make_unique<MyType>(args);</code></pre>
+      <pre><code class="language-cpp">std::unique_ptr&lt;MyType&gt; ptr = std::make_unique&lt;MyType&gt;(args);</code></pre>
 
       <h2>shared_ptr</h2>
       <p>Use `std::shared_ptr` only when shared ownership is necessary. Prefer `weak_ptr` to break cycles.</p>
@@ -44,6 +45,9 @@
   </main>
 
   <footer class="site-footer"><div class="wrap foot">&copy; 2025 iamtrusters</div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-cpp.min.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

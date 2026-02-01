@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Introduction to RTOS",
+    "url": "posts/2026-02-01-introduction-to-rtos.html",
+    "date": "2026-02-01",
+    "views": 1240
+  },
+  {
+    "title": "Embedded Logging Strategies",
+    "url": "posts/2026-01-20-embedded-logging-strategies.html",
+    "date": "2026-01-20",
+    "views": 980
+  },
+  {
+    "title": "Bare-Metal Startup Basics",
+    "url": "posts/2026-01-15-bare-metal-startup.html",
+    "date": "2026-01-15",
+    "views": 1100
+  },
+  {
+    "title": "Practical Driver Abstractions",
+    "url": "posts/2026-01-05-driver-abstractions.html",
+    "date": "2026-01-05",
+    "views": 760
+  },
+  {
+    "title": "Modern C++ Best Practices",
+    "url": "posts/2025-12-03-modern-cpp-best-practices.html",
+    "date": "2025-12-03",
+    "views": 1330
+  },
+  {
+    "title": "RAII & Smart Pointers",
+    "url": "posts/2025-12-04-raii-and-smart-pointers.html",
+    "date": "2025-12-04",
+    "views": 1330
+  },
+  {
+    "title": "Low-latency C++ Tips",
+    "url": "posts/2025-12-04-low-latency-cpp.html",
+    "date": "2025-12-04",
+    "views": 1450
+  }
+]

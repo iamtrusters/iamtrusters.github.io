@@ -208,6 +208,34 @@ body{padding-top:92px}
     text-decoration:none;
 }
 
+/* ================= Pagination ================= */
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a,
+.pagination span {
+    margin: 0 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+}
+
+.pagination span.current {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.pagination a:hover {
+    background: var(--bg);
+}
+
 /* ================= Sidebar ================= */
 
 .card{
@@ -340,13 +368,13 @@ body{padding-top:92px}
 /* ================= Code ================= */
 
 pre{
-    background:#0f172a;
-    color:#e6eef8;
     padding:14px;
     border-radius:8px;
     overflow:auto;
     font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
     font-size:0.92rem;
+    margin:1rem 0;
+    border:1px solid #e6e9ef;
 }
 
 code{
@@ -360,6 +388,57 @@ pre code{
     background:transparent;
     padding:0;
     color:inherit;
+}
+
+/* ================= Diagrams ================= */
+
+.diagram {
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.diagram svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================= Article Styling ================= */
+
+.content.single article {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content.single h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #0f172a;
+}
+
+.content.single h2 {
+    color: var(--accent);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.content.single p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.content.single ul, .content.single ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.content.single li {
+    margin-bottom: 0.5rem;
 }
 
 /* ================= Footer ================= */
